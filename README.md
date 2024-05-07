@@ -1,6 +1,6 @@
 ---
-description: Discover base tools contributed to the projects by BonyNode team.
-cover: .gitbook/assets/worldmap.jpg
+description: Service pages of all chain supported by BabyScope Team.
+cover: .gitbook/assets/Chains.jpg
 coverY: 0
 ---
 
