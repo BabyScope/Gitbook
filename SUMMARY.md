@@ -1,18 +1,13 @@
 # Table of contents
 
-* [👽 BonyNode Explorer](https://bonynode.online/)
+* [🔭 BabyScope Explorer](https://explorer.babyscope.nl)
 * [💸 Supported IBC Relayers](https://relayers.smartstake.io/relayer/)
-* [💚 Supported Chains](README.md)
+* [⛓️ Supported Chains](README.md)
 * [🧙‍♀️ Monitoring Tools](monitoring-tools.md)
 * [🏝️ Governance Proposals Bots](governance-proposals-bots.md)
 
 ## Mainnet
 
-* [🚀 TIMPI](mainnet/timpi/README.md)
-  * [Installation](mainnet/timpi/installation.md)
-  * [Upgrade](mainnet/timpi/upgrade.md)
-  * [Snapshot](mainnet/timpi/snapshot.md)
-  * [Useful commands](mainnet/timpi/useful-commands.md)
 * [💫 COSMOS HUB](mainnet/cosmos-hub/README.md)
   * [Installation](mainnet/cosmos-hub/installation.md)
   * [Upgrade](mainnet/cosmos-hub/upgrade.md)
