@@ -10,7 +10,7 @@ coverY: 0
 
 ## MAINNET
 
-<img src=".\images\axelar.png" alt="" data-size="line"> [Axelar](https://services.kjnodes.com/testnet/archway/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt="" data-size="line"> [Axelar](https://services.kjnodes.com/testnet/archway/)
 
 <img src="images\evmos.png" alt="" data-size="line"> [EVMOS](./)
 
@@ -22,7 +22,7 @@ coverY: 0
 
 <img src="images\axelar.png" alt="" data-size="line"> [Axelar](broken-reference/)
 
-<img src="images\dymension.png" alt="" data-size="line"> [Dymension](broken-reference/)
+<img src="[images\dymension.png](https://github.com/BabyScope/Gitbook/blob/main/images/dymension.png?raw=true)" alt="" data-size="line"> [Dymension](broken-reference/)
 
 <img src="images\elys.png" alt="" data-size="line"> [Elys](broken-reference/)
 
