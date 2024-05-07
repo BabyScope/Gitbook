@@ -10,7 +10,7 @@ coverY: 0
 
 ## MAINNET
 
-<img src="images\axelar.png" alt="" data-size="line"> [Axelar](https://services.kjnodes.com/testnet/archway/)
+<img src=".\images\axelar.png" alt="" data-size="line"> [Axelar](https://services.kjnodes.com/testnet/archway/)
 
 <img src="images\evmos.png" alt="" data-size="line"> [EVMOS](./)
 
