@@ -1,6 +1,6 @@
 ---
-description: Discover base tools contributed to the projects by BonyNode team.
-cover: .gitbook/assets/worldmap.jpg
+description: Service pages of all chain supported by BabyScope Team.
+cover: .gitbook/assets/Chains.jpg
 coverY: 0
 ---
 
@@ -20,7 +20,7 @@ coverY: 0
 
 ## TESTNET
 
-<img src="[images\axelar.png](https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true)" alt="" data-size="line"> [Axelar](./)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt="" data-size="line"> [Axelar](./)
 
 <img src="https://github.com/BabyScope/Gitbook/blob/main/images/dymension.png?raw=true" alt="" data-size="line"> [Dymension](./)
 
