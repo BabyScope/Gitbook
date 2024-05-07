@@ -10,27 +10,29 @@ coverY: 0
 
 ## MAINNET
 
-<img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt="" data-size="line"> [Axelar](https://services.kjnodes.com/testnet/archway/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt="" data-size="line"> [Axelar](./)
 
-<img src="images\evmos.png" alt="" data-size="line"> [EVMOS](./)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/evmos.png?raw=true" alt="" data-size="line"> [EVMOS](./)
 
-<img src="images\near.png" alt="" data-size="line"> [NEAR](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/near.png?raw=true" alt="" data-size="line"> [NEAR](./)
 
 
 
 ## TESTNET
 
-<img src="images\axelar.png" alt="" data-size="line"> [Axelar](broken-reference/)
+<img src="[images\axelar.png](https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true)" alt="" data-size="line"> [Axelar](./)
 
-<img src="[images\dymension.png](https://github.com/BabyScope/Gitbook/blob/main/images/dymension.png?raw=true)" alt="" data-size="line"> [Dymension](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/dymension.png?raw=true" alt="" data-size="line"> [Dymension](./)
 
-<img src="images\elys.png" alt="" data-size="line"> [Elys](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/elys.png?raw=true" alt="" data-size="line"> [Elys](./)
 
-<img src="images\evmos.png" alt="" data-size="line"> [Evmos](./)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/evmos.png?raw=true" alt="" data-size="line"> [Evmos](./)
 
-<img src="images\lava.png" alt="" data-size="line"> [Lava](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/lava.png?raw=true" alt="" data-size="line"> [Lava](./)
 
-<img src="images\side.png" alt="" data-size="line"> [Side](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/near.png?raw=true" alt="" data-size="line"> [NEAR](./)
 
-<img src="images\union.png" alt="" data-size="line"> [Union](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/side.png?raw=true" alt="" data-size="line"> [Side](./)
+
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/union.png?raw=true" alt="" data-size="line"> [Union](./)
 
