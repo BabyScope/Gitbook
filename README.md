@@ -10,27 +10,29 @@ coverY: 0
 
 ## MAINNET
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/archway.png" alt="" data-size="line"> [Axelar](https://services.kjnodes.com/testnet/archway/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt="" data-size="line"> [Axelar](./)
 
-<img src="https://itrocket.net/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fempower.116ef4f1.png&#x26;w=64&#x26;q=75" alt="project logo" data-size="line"> [EVMOS](./)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/evmos.png?raw=true" alt="" data-size="line"> [EVMOS](./)
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/osmosis.png" alt="" data-size="line"> [NEAR](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/near.png?raw=true" alt="" data-size="line"> [NEAR](./)
 
 
 
 ## TESTNET
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/andromeda.png" alt="" data-size="line"> [Axelar](broken-reference/)
+<img src="[images\axelar.png](https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true)" alt="" data-size="line"> [Axelar](./)
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/dymension.png" alt="" data-size="line"> [Dymension](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/dymension.png?raw=true" alt="" data-size="line"> [Dymension](./)
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/elys.png" alt="" data-size="line"> [Elys](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/elys.png?raw=true" alt="" data-size="line"> [Elys](./)
 
-<img src="https://itrocket.net/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fempower.116ef4f1.png&#x26;w=64&#x26;q=75" alt="project logo" data-size="line"> [Evmos](./)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/evmos.png?raw=true" alt="" data-size="line"> [Evmos](./)
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/lava.png" alt="" data-size="line"> [Lava](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/lava.png?raw=true" alt="" data-size="line"> [Lava](./)
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/nolus.png" alt="" data-size="line"> [Side](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/near.png?raw=true" alt="" data-size="line"> [NEAR](./)
 
-<img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/icons/ojo.png" alt="" data-size="line"> [Union](broken-reference/)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/side.png?raw=true" alt="" data-size="line"> [Side](./)
+
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/union.png?raw=true" alt="" data-size="line"> [Union](./)
 
