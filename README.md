@@ -20,7 +20,7 @@ coverY: 0
 
 ## TESTNET
 
-<img src="[images\axelar.png](https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true)" alt="" data-size="line"> [Axelar](./)
+<img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt="" data-size="line"> [Axelar](./)
 
 <img src="https://github.com/BabyScope/Gitbook/blob/main/images/dymension.png?raw=true" alt="" data-size="line"> [Dymension](./)
 
