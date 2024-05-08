@@ -1,2 +1,0 @@
-# Grant Validators
-

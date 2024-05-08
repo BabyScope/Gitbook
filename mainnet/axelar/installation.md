@@ -1,13 +1,15 @@
 ---
 description: >-
-  Axelar delivers secure cross-chain communication for Web3, enabling you to build Interchain dApps that grow beyond a single chain. Secure means Axelar is built on proof-of-stake, the battle-tested approach used by Ethereum, Polygon, Cosmos, and more.
+  Axelar delivers secure cross-chain communication for Web3, enabling you to
+  build Interchain dApps that grow beyond a single chain. Secure means Axelar is
+  built on proof-of-stake, the battle-tested app
 ---
 
 # Installation
 
-<figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../images/axelar.png" alt=""><figcaption></figcaption></figure>
 
-**Chain ID**: axelar-dojo-1 | **Latest Version Tag**: v0.35.5 | **Custom Port**: 165  | **WASM**: ON
+**Chain ID**: axelar-dojo-1 | **Latest Version Tag**: v0.35.5 | **Custom Port**: 165 | **WASM**: ON
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
