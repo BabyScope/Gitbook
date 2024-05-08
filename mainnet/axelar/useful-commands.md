@@ -6,7 +6,7 @@ description: >-
 
 # Useful commands
 
-<figure><img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/andromeda.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt=""><figcaption></figcaption></figure>
 
 ### 🔑 Key management <a href="#key-management" id="key-management"></a>
 
