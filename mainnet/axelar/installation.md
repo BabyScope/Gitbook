@@ -7,7 +7,7 @@ description: >-
 
 <figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt=""><figcaption></figcaption></figure>
 
-**Chain ID**: axelar-dojo-1 | **Latest Version Tag**: v0.35.5 | **Custom Port**: 141  | **WASM**: ON
+**Chain ID**: axelar-dojo-1 | **Latest Version Tag**: v0.35.5 | **Custom Port**: 165  | **WASM**: ON
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
@@ -99,7 +99,7 @@ sudo systemctl enable axelard
 # Set node configuration
 axelard config chain-id axelar-dojo-1
 axelard config keyring-backend file
-axelard config node tcp://localhost:14157
+axelard config node tcp://localhost:16557
 
 # Initialize the node
 axelard init $MONIKER --chain-id axelar-dojo-1
@@ -123,8 +123,8 @@ sed -i \
   $HOME/.axelar/config/app.toml
 
 # Set custom ports
-sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:14158\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:14157\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:14160\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:14156\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":16566\"%" $HOME/.axelar/config/config.toml
-sed -i -e "s%^address = \"tcp://0.0.0.0:17\"%address = \"tcp://0.0.0.0:114117\"%; s%^address = \":8080\"%address = \":14180\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:14190\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:14191\"%; s%:8545%:14145%; s%:8546%:14146%; s%:6065%:14165%" $HOME/.axelar/config/app.toml
+sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:16558\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:16557\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:16560\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:16556\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":16566\"%" $HOME/.axelar/config/config.toml
+sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:16517\"%; s%^address = \":8080\"%address = \":16580\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:16590\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:16591\"%; s%:8545%:16545%; s%:8546%:16546%; s%:6065%:16565%" $HOME/.axelar/config/app.toml
 
 ```
 
