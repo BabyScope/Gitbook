@@ -68,7 +68,7 @@ axelard tx staking create-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id galileo-3 \
+--chain-id axelar-dojo-1 \
 --commission-rate 0.05 \
 --commission-max-rate 0.20 \
 --commission-max-change-rate 0.01 \
@@ -88,7 +88,7 @@ axelard tx staking edit-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id galileo-3 \
+--chain-id axelar-dojo-1 \
 --commission-rate 0.05 \
 --from wallet \
 --gas-adjustment 1.4 \
