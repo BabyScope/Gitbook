@@ -4,7 +4,7 @@ description: >-
   in Web3.
 ---
 
-# 🚀 UNION
+# UNION
 
 <figure><img src="https://miro.medium.com/v2/resize:fit:1260/0*zFOT-Sli7X6s9_vV.jpg" alt="" height="351" width="700"><figcaption></figcaption></figure>
 

@@ -4,19 +4,18 @@ description: >-
   in Web3.
 ---
 
-# 🚀 SIDE
+# SIDE
 
 <figure><img src="https://miro.medium.com/v2/resize:fit:1260/0*zFOT-Sli7X6s9_vV.jpg" alt="" height="351" width="700"><figcaption></figcaption></figure>
 
-The Exchange Layer of Web3 \
+The Exchange Layer of Web3\
 Discover The Unexplored Side\
 Enter the Web of Endless Opportunities and Unleash Limitless Potential\
 \
 Side Protocol: [https://side.one](https://side.one/) Side Labs: [https://sidelabs.co](https://sidelabs.co/)
 
 RPC:[ https://side-testnet-rpc.bonynode.online](https://side-testnet-rpc.bonynode.online)\
-API: [https://side-testnet-api.bonynode.online](https://side-testnet-api.bonynode.online)\
-
+API: [https://side-testnet-api.bonynode.online](https://side-testnet-api.bonynode.online)\\
 
 **Twitter (X.com) —** [https://twitter.com/SideProtocol](https://twitter.com/SideProtocol)
 

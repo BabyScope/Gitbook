@@ -1,4 +1,4 @@
-# 🚀 ELYS
+# ELYS
 
 ![](https://services.kjnodes.com/assets/images/logos/elys.png)
 
