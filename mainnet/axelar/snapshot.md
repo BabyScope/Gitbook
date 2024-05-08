@@ -10,27 +10,27 @@ Snapshots allows a new node to join the network by recovering application state 
 
 Snapshots are taken automatically every 6 hours starting at **07:00 UTC**
 
-**pruning**: 100/0/19 | **indexer**: null | **version tag**: galileo-3-v1.1.0-beta1
-
-| BLOCK   | AGE        | DOWNLOAD                                                                                       |
-| ------- | ---------- | ---------------------------------------------------------------------------------------------- |
-| 1650163 | 17 minutes | [snapshot (0.88 GB)](https://snapshots.kjnodes.com/andromeda-testnet/snapshot\_latest.tar.lz4) |
+**pruning**: 100/0/19 | **indexer**: null | **version tag**: v0.35
 
 ## Instructions
 
 ### Stop the service and reset the data
 
 ```bash
-sudo systemctl stop andromedad
-cp $HOME/.andromedad/data/priv_validator_state.json $HOME/.andromedad/priv_validator_state.json.backup
-rm -rf $HOME/.andromedad/data
+sudo systemctl stop axelard
+cp $HOME/.axelar/data/priv_validator_state.json $HOME/.axelar/priv_validator_state.json.backup
+rm -rf $HOME/.axelar/data
 ```
 
 ### Download latest snapshot
 
 ```bash
-curl -L https://snapshots.kjnodes.com/andromeda-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.andromedad
-mv $HOME/.andromedad/priv_validator_state.json.backup $HOME/.andromedad/data/priv_validator_state.json
+curl -L https://snapshots.kjnodes.com/axelar/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.axelar
+mv $HOME/.axelar/priv_validator_state.json.backup $HOME/.axelar/data/priv_validator_state.json
 ```
 
 ### Restart the service and check the log
+
+```bash
+sudo systemctl start axelard && sudo journalctl -u axelard -f --no-hostname -o cat
+```

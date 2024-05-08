@@ -4,14 +4,32 @@ description: Prepare for and the upcomming chain upgrade using Cosmovisor.
 
 # Upgrade
 
-<figure><img src="https://raw.githubusercontent.com/kj89/cosmos-images/main/logos/andromeda.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt=""><figcaption></figcaption></figure>
 
-**Chain ID**: galileo-3 | **Latest Version Tag**: galileo-3-v1.1.0-beta1 | **Custom Port**: 147
+**Chain ID**: axelar-dojo-1 | **Latest Version Tag**: v0.35.5 | **Custom Port**: 141
 
 {% hint style="info" %}
 Since we are using Cosmovisor, it makes it very easy to prepare for upcomming upgrade. You just have to build new binaries and move it into cosmovisor upgrades directory.
 {% endhint %}
 
-{% hint style="warning" %}
-Currently there are no upgrades available for galileo-3!
-{% endhint %}
+## Download and build upgrade binaries
+
+```bash
+# Clone project repository
+cd $HOME
+rm -rf axelar-core
+git clone https://github.com/axelarnetwork/axelar-core.git
+cd axelar-core
+git checkout v0.35.5
+
+# Build binaries
+make build
+
+# Prepare binaries for Cosmovisor
+mkdir -p $HOME/.axelar/cosmovisor/upgrades/v0.35/bin
+mv bin/axelard $HOME/.axelar/cosmovisor/upgrades/v0.35/bin/
+rm -rf build
+
+```
+
+*Now when upgrade block height is reached, Cosmovisor will handle it automatically!*
