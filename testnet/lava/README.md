@@ -1,4 +1,4 @@
-# 🚀 LAVA
+# LAVA
 
 ## Lava <a href="#lava" id="lava"></a>
 
