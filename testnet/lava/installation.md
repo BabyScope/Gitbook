@@ -1,48 +1,126 @@
 # Installation
 
-### Manual Installation <a href="#installation" id="installation"></a>
+![](https://services.kjnodes.com/assets/images/logos/lava.png)
 
-[Official Documentation](https://docs.lavanet.xyz/testnet)Recommended Hardware: 4 Cores, 8GB RAM, 100GB of storage (NVME)
+| Chain ID       | Latest Version Tag | Custom Port | 
+| -------------  | ------------------ | ----------- | 
+| lava-testnet-2 | v2.0.0             | 144         | 
 
-```bash
-# install dependencies, if needed
-sudo apt update && sudo apt upgrade -y
-sudo apt install curl git wget htop tmux build-essential jq make lz4 gcc unzip -y
+
+#### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
+
+Replace **YOUR\_MONIKER\_GOES\_HERE** with your validator name
+
+```
+MONIKER="YOUR_MONIKER_GOES_HERE"
 ```
 
+#### Install dependencies <a href="#install-dependencies" id="install-dependencies"></a>
 
+**UPDATE SYSTEM AND INSTALL BUILD TOOLS**
 
-```bash
-# install go, if needed
-cd $HOME
-VER="1.20.5"
-wget "https://golang.org/dl/go$VER.linux-amd64.tar.gz"
+```
+sudo apt -q update
+sudo apt -qy install curl git jq lz4 build-essential
+sudo apt -qy upgrade
+```
+
+**INSTALL GO**
+
+```
 sudo rm -rf /usr/local/go
-sudo tar -C /usr/local -xzf "go$VER.linux-amd64.tar.gz"
-rm "go$VER.linux-amd64.tar.gz"
-[ ! -f ~/.bash_profile ] && touch ~/.bash_profile
-echo "export PATH=$PATH:/usr/local/go/bin:~/go/bin" >> ~/.bash_profile
-source $HOME/.bash_profile
-[ ! -d ~/go/bin ] && mkdir -p ~/go/bin
+curl -Ls https://go.dev/dl/go1.22.2.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
+eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
+```
 
-# set vars
-echo "export WALLET="wallet"" >> $HOME/.bash_profile
-echo "export MONIKER="test"" >> $HOME/.bash_profile
-echo "export LAVA_CHAIN_ID="lava-testnet-2"" >> $HOME/.bash_profile
-echo "export LAVA_PORT="20"" >> $HOME/.bash_profile
-source $HOME/.bash_profile
+#### Download and build binaries <a href="#download-and-build-binaries" id="download-and-build-binaries"></a>
 
-# download binary
+```
+# Clone project repository
 cd $HOME
-wget -O lavad https://binary.lavanet.xyz/v0.35.0/linux-amd64/lavad
-chmod +x $HOME/lavad
-mv $HOME/lavad $HOME/go/bin/lavad
+rm -rf lava
+git clone https://github.com/lavanet/lava.git
+cd lava
+git checkout v2.0.0
 
-# config and init app
-lavad config node tcp://localhost:${LAVA_PORT}657
-lavad config keyring-backend os
+# Build binaries
+export LAVA_BINARY=lavad
+make build
+
+# Prepare binaries for Cosmovisor
+mkdir -p $HOME/.lava/cosmovisor/genesis/bin
+mv build/lavad $HOME/.lava/cosmovisor/genesis/bin/
+rm -rf build
+
+# Create application symlinks
+sudo ln -s $HOME/.lava/cosmovisor/genesis $HOME/.lava/cosmovisor/current -f
+sudo ln -s $HOME/.lava/cosmovisor/current/bin/lavad /usr/local/bin/lavad -f
+```
+
+#### Install Cosmovisor and create a service <a href="#install-cosmovisor-and-create-a-service" id="install-cosmovisor-and-create-a-service"></a>
+
+```
+# Download and install Cosmovisor
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
+
+# Create service
+sudo tee /etc/systemd/system/lava.service > /dev/null << EOF
+[Unit]
+Description=lava node service
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which cosmovisor) run start
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=65535
+Environment="DAEMON_HOME=$HOME/.lava"
+Environment="DAEMON_NAME=lavad"
+Environment="UNSAFE_SKIP_BACKUP=true"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl daemon-reload
+sudo systemctl enable lava.service
+```
+
+#### Initialize the node <a href="#initialize-the-node" id="initialize-the-node"></a>
+
+```
+# Set node configuration
 lavad config chain-id lava-testnet-2
-lavad init $MONIKER --chain-id $LAVA_CHAIN_ID
+lavad config keyring-backend test
+lavad config node tcp://localhost:14457
+
+# Initialize the node
+lavad init $MONIKER --chain-id lava-testnet-2
+
+# Download genesis and addrbook
+curl -Ls https://snapshots.kjnodes.com/lava-testnet/genesis.json > $HOME/.lava/config/genesis.json
+curl -Ls https://snapshots.kjnodes.com/lava-testnet/addrbook.json > $HOME/.lava/config/addrbook.json
+
+# Add seeds
+sed -i -e "s|^seeds *=.*|seeds = \"3f472746f46493309650e5a033076689996c8881@lava-testnet.rpc.kjnodes.com:14459\"|" $HOME/.lava/config/config.toml
+
+# Set minimum gas price
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0ulava\"|" $HOME/.lava/config/app.toml
+
+# Set pruning
+sed -i \
+  -e 's|^pruning *=.*|pruning = "custom"|' \
+  -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+  -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+  -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+  $HOME/.lava/config/app.toml
+
+# Set custom ports
+sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:14458\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:14457\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:14460\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:14456\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":14466\"%" $HOME/.lava/config/config.toml
+sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:14417\"%; s%^address = \":8080\"%address = \":14480\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:14490\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:14491\"%; s%:8545%:14445%; s%:8546%:14446%; s%:6065%:14465%" $HOME/.lava/config/app.toml
+
+# Update chain-specific configuration
 sed -i \
   -e 's/timeout_commit = ".*"/timeout_commit = "30s"/g' \
   -e 's/timeout_propose = ".*"/timeout_propose = "1s"/g' \
@@ -53,156 +131,17 @@ sed -i \
   -e 's/timeout_propose_delta = ".*"/timeout_propose_delta = "500ms"/g' \
   -e 's/skip_timeout_commit = ".*"/skip_timeout_commit = false/g' \
   $HOME/.lava/config/config.toml
-
-# download genesis and addrbook
-wget -O $HOME/.lava/config/genesis.json https://testnet-files.itrocket.net/lava/genesis.json
-wget -O $HOME/.lava/config/addrbook.json https://testnet-files.itrocket.net/lava/addrbook.json
-
-# set seeds and peers
-SEEDS="eb7832932626c1c636d16e0beb49e0e4498fbd5e@lava-testnet-seed.itrocket.net:20656"
-PEERS="3693ea5a8a9c0590440a7d6c9a98a022ce3b2455@lava-testnet-peer.itrocket.net:20656,fe1998168f5336811a79fbcaf2d5d5a69f2f9f63@65.108.81.145:26656,40046fe63bdaa9efde27707b0d3de0bf84fedf80@86.111.48.158:26656,c19965fe8a1ea3391d61d09cf589bca0781d29fd@162.19.217.52:26656,aa5ada2c19585b0d288a4d0069922f0ac5d848e2@154.53.55.21:656,7e0c614bad2d0232b9153de29c193a2700ff5408@65.109.92.241:197,51aeaa2c757989f720c904023c2dbedfc720f75e@23.88.5.169:27656,6d4e96c5e653f0ed7f905b1d53ef8d373af55ecf@116.202.217.20:60656,706fc0f682c33ab8deb0aa84c797dc2d1d0119b4@109.123.241.222:26656,20c13bd0d972acba5588493fb528b558a0317013@38.242.133.203:26656,999b919696e7ab0d959b1c23e6b25c1e521dc657@154.53.54.11:656"
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.lava/config/config.toml
-
-# set custom ports in app.toml
-sed -i.bak -e "s%:1317%:${LAVA_PORT}317%g;
-s%:8080%:${LAVA_PORT}080%g;
-s%:9090%:${LAVA_PORT}090%g;
-s%:9091%:${LAVA_PORT}091%g;
-s%:8545%:${LAVA_PORT}545%g;
-s%:8546%:${LAVA_PORT}546%g;
-s%:6065%:${LAVA_PORT}065%g" $HOME/.lava/config/app.toml
-
-# set custom ports in config.toml file
-sed -i.bak -e "s%:26658%:${LAVA_PORT}658%g;
-s%:26657%:${LAVA_PORT}657%g;
-s%:6060%:${LAVA_PORT}060%g;
-s%:26656%:${LAVA_PORT}656%g;
-s%^external_address = \"\"%external_address = \"$(wget -qO- eth0.me):${LAVA_PORT}656\"%;
-s%:26660%:${LAVA_PORT}660%g" $HOME/.lava/config/config.toml
-
-# config pruning
-sed -i -e "s/^pruning *=.*/pruning = \"custom\"/" $HOME/.lava/config/app.toml
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"100\"/" $HOME/.lava/config/app.toml
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"50\"/" $HOME/.lava/config/app.toml
-
-# set minimum gas price, enable prometheus and disable indexing
-sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "0.0ulava"|g' $HOME/.lava/config/app.toml
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.lava/config/config.toml
-sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.lava/config/config.toml
-
-# create service file
-sudo tee /etc/systemd/system/lavad.service > /dev/null <<EOF
-[Unit]
-Description=Lava node
-After=network-online.target
-[Service]
-User=$USER
-WorkingDirectory=$HOME/.lava
-ExecStart=$(which lavad) start --home $HOME/.lava
-Restart=on-failure
-RestartSec=5
-LimitNOFILE=65535
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# reset and download snapshot
-lavad tendermint unsafe-reset-all --home $HOME/.lava
-if curl -s --head curl https://testnet-files.itrocket.net/lava/snap_lava.tar.lz4 | head -n 1 | grep "200" > /dev/null; then
-  curl https://testnet-files.itrocket.net/lava/snap_lava.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.lava
-    else
-  echo no have snap
-fi
-
-# enable and start service
-sudo systemctl daemon-reload
-sudo systemctl enable lavad
-sudo systemctl restart lavad && sudo journalctl -u lavad -f
 ```
 
-### Automatic Installation <a href="#auto-installation" id="auto-installation"></a>
+#### Download latest chain snapshot <a href="#download-latest-chain-snapshot" id="download-latest-chain-snapshot"></a>
 
-pruning: custom: 100/0/10 | indexer: null
-
-```bash
-source <(curl -s https://itrocket.net/api/testnet/lava/autoinstall/)
+```
+curl -L https://snapshots.kjnodes.com/lava-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.lava
+[[ -f $HOME/.lava/data/upgrade-info.json ]] && cp $HOME/.lava/data/upgrade-info.json $HOME/.lava/cosmovisor/genesis/upgrade-info.json
 ```
 
-### Create wallet <a href="#create-wallet" id="create-wallet"></a>
+#### Start service and check the logs <a href="#start-service-and-check-the-logs" id="start-service-and-check-the-logs"></a>
 
-```bash
-# to create a new wallet, use the following command. don’t forget to save the mnemonic
-lavad keys add $WALLET
-
-# to restore exexuting wallet, use the following command
-lavad keys add $WALLET --recover
-
-# save wallet and validator address
-WALLET_ADDRESS=$(lavad keys show $WALLET -a)
-VALOPER_ADDRESS=$(lavad keys show $WALLET --bech val -a)
-echo "export WALLET_ADDRESS="$WALLET_ADDRESS >> $HOME/.bash_profile
-echo "export VALOPER_ADDRESS="$VALOPER_ADDRESS >> $HOME/.bash_profile
-source $HOME/.bash_profile
-
-# check sync status, once your node is fully synced, the output from above will print "false"
-lavad status 2>&1 | jq .SyncInfo
-
-# before creating a validator, you need to fund your wallet and check balance
-lavad query bank balances $WALLET_ADDRESS
 ```
-
-### Create validator <a href="#create-validator" id="create-validator"></a>
-
-MonikerIdentityDetailsAmount, ulavaCommission rateCommission max rateCommission max change rate
-
-```bash
-lavad tx staking create-validator \
---amount 1000000ulava \
---from $WALLET \
---commission-rate 0.1 \
---commission-max-rate 0.2 \
---commission-max-change-rate 0.01 \
---min-self-delegation 1 \
---pubkey $(lavad tendermint show-validator) \
---moniker "test" \
---identity "" \
---details "I love blockchain ❤️" \
---chain-id lava-testnet-2 \
---fees 300ulava \
--y
-```
-
-### Monitoring <a href="#monitoring" id="monitoring"></a>
-
-If you want to have set up a monitoring and alert system use [our cosmos nodes monitoring guide with tenderduty](https://teletype.in/@itrocket/bdJAHvC\_q8h)
-
-### Security <a href="#security" id="security"></a>
-
-To protect you keys please don\`t share your privkey, mnemonic and follow a basic security rules
-
-#### Set up ssh keys for authentication <a href="#ssh" id="ssh"></a>
-
-You can use this [guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04) to configure ssh authentication and disable password authentication on your server
-
-#### Firewall security <a href="#firewall" id="firewall"></a>
-
-Set the default to allow outgoing connections, deny all incoming, allow ssh and node p2p port
-
-```bash
-sudo ufw default allow outgoing 
-sudo ufw default deny incoming 
-sudo ufw allow ssh/tcp 
-sudo ufw allow ${LAVA_PORT}656/tcp
-sudo ufw enable
-```
-
-### Delete node <a href="#delete" id="delete"></a>
-
-```bash
-sudo systemctl stop lavad
-sudo systemctl disable lavad
-sudo rm -rf /etc/systemd/system/lavad.service
-sudo rm $(which lavad)
-sudo rm -rf $HOME/.lava
-sed -i "/LAVA_/d" $HOME/.bash_profile
+sudo systemctl start lava.service && sudo journalctl -u lava.service -f --no-hostname -o cat
 ```

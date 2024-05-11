@@ -6,7 +6,7 @@ description: >-
 
 # Useful commands
 
-<figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/axelar.png?raw=true" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/evmos.png?raw=true" alt=""><figcaption></figcaption></figure>
 
 ### 🔑 Key management <a href="#key-management" id="key-management"></a>
 
@@ -68,7 +68,7 @@ evmosd tx staking create-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id axelar-dojo-1 \
+--chain-id evmos-dojo-1 \
 --commission-rate 0.05 \
 --commission-max-rate 0.20 \
 --commission-max-change-rate 0.01 \
@@ -88,7 +88,7 @@ evmosd tx staking edit-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id axelar-dojo-1 \
+--chain-id evmos-dojo-1 \
 --commission-rate 0.05 \
 --from wallet \
 --gas-adjustment 1.4 \

@@ -4,17 +4,17 @@ description: lava testnet-2
 
 # RPC, API, gRPC
 
-RPC:  [http://bonynode.online:38657](http://bonynode.online:38657)
+RPC:  [https://lava-rpc.babyscope.nl](https://lava-rpc.babyscope.nl)
 
-<pre class="language-bash"><code class="lang-bash"><strong>http://bonynode.online:38657
+<pre class="language-bash"><code class="lang-bash"><strong>https://lava-rpc.babyscope.nl
 </strong></code></pre>
 
 \
 \
-API:  [http://bonynode.online:38317](http://bonynode.online:38317)
+API:  [https://lava-api.babyscope.nl)](https://lava-api.babyscope.nl)
 
 ```bash
-http://bonynode.online:38317
+https://lava-api.babyscope.nl
 ```
 
 gRPC:
@@ -26,7 +26,7 @@ http://bonynode.online:38090
 #### peers: <a href="#peer" id="peer"></a>
 
 ```bash
-d26b55360f4332f4d4096c3260c07b704c8257ed@185.188.249.46:38656
+ebc258dcde9625467c5fa382c2667d131868f91f@2a02:247a:271:6100::1:14556
 ```
 
 \

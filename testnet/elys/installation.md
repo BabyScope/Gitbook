@@ -2,9 +2,10 @@
 
 ![](https://services.kjnodes.com/assets/images/logos/elys.png)
 
-| Chain ID      | Latest Version Tag | Custom Port |
-| ------------- | ------------------ | ----------- |
-| elystestnet-1 | v0.29.24           | 153         |
+| Chain ID      | Latest Version Tag | Custom Port | WASM       | 
+| ------------- | ------------------ | ----------- | ---------- |
+| elystestnet-1 | v0.30.0            | 153         | ON         |
+
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
@@ -28,7 +29,7 @@ sudo apt -qy upgrade
 
 ```
 sudo rm -rf /usr/local/go
-curl -Ls https://go.dev/dl/go1.21.8.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+curl -Ls https://go.dev/dl/go1.22.2.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
 eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
 eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ```
@@ -41,7 +42,7 @@ cd $HOME
 rm -rf elys
 git clone https://github.com/elys-network/elys.git
 cd elys
-git checkout v0.29.24
+git checkout v0.30.0
 
 # Build binaries
 make build

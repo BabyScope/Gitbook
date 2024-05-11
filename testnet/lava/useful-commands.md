@@ -1,293 +1,352 @@
 # Useful commands
 
-### Service operations ⚙️ <a href="#service-operations" id="service-operations"></a>
+![](https://services.kjnodes.com/assets/images/logos/lava.png)
 
-Check logs
+### 🔑 Key management <a href="#key-management" id="key-management"></a>
 
-```bash
-sudo journalctl -u lavad -f
+**ADD NEW KEY**
+
+```
+lavad keys add wallet
 ```
 
-Start service
+**RECOVER EXISTING KEY**
 
-```bash
-sudo systemctl start lavad
+```
+lavad keys add wallet --recover
 ```
 
-Stop service
+**LIST ALL KEYS**
 
-```bash
-sudo systemctl stop lavad
 ```
-
-Restart service
-
-```bash
-sudo systemctl restart lavad
-```
-
-Check service status
-
-```bash
-sudo systemctl status lavad
-```
-
-Reload services
-
-```bash
-sudo systemctl daemon-reload
-```
-
-Enable Service
-
-```bash
-sudo systemctl enable lavad
-```
-
-Disable Service
-
-```bash
-sudo systemctl disable lavad
-```
-
-Sync info
-
-```bash
-lavad status 2>&1 | jq .SyncInfo
-```
-
-Node info
-
-```bash
-lavad status 2>&1 | jq .NodeInfo
-```
-
-Your node peer
-
-```bash
-echo $(lavad tendermint show-node-id)'@'$(wget -qO- eth0.me)':'$(cat $HOME/.lava/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
-```
-
-### Key management <a href="#key-management" id="key-management"></a>
-
-Add New Wallet
-
-```bash
-lavad keys add $WALLET
-```
-
-Restore executing wallet
-
-```bash
-lavad keys add $WALLET --recover
-```
-
-List All Wallets
-
-```bash
 lavad keys list
 ```
 
-Delete wallet
+**DELETE KEY**
 
-```bash
-lavad keys delete $WALLET
+```
+lavad keys delete wallet
 ```
 
-Check Balance
+**EXPORT KEY TO A FILE**
 
-```bash
-lavad q bank balances $(lavad keys show $WALLET -a)
+```
+lavad keys export wallet
 ```
 
-Export Key (save to wallet.backup)
+**IMPORT KEY FROM A FILE**
 
-```bash
-lavad keys export $WALLET
+```
+lavad keys import wallet wallet.backup
 ```
 
-View EVM Prived Key
+**QUERY WALLET BALANCE**
 
-```bash
-lavad keys unsafe-export-eth-key $WALLET
+```
+lavad q bank balances $(lavad keys show wallet -a)
 ```
 
-Import Key (restore from wallet.backup)
+### 👷 Validator management <a href="#validator-management" id="validator-management"></a>
 
-```bash
-lavad keys import $WALLET wallet.backup
+Please make sure you have adjusted **moniker**, **identity**, **details** and **website** to match your values.
+
+**CREATE NEW VALIDATOR**
+
 ```
-
-### Tokens <a href="#tokens" id="tokens"></a>
-
-To valoper addressTo wallet addressAmount, ulava
-
-Withdraw all rewards
-
-```bash
-lavad tx distribution withdraw-all-rewards --from $WALLET --chain-id lava-testnet-2 --fees 300ulava
-```
-
-Withdraw rewards and commission from your validator
-
-```bash
-lavad tx distribution withdraw-rewards $VALOPER_ADDRESS --from $WALLET --commission --chain-id lava-testnet-2 --fees 300ulava -y
-```
-
-Check your balance
-
-```bash
-lavad query bank balances $WALLET_ADDRESS
-```
-
-Delegate to Yourself
-
-```bash
-lavad tx staking delegate $(lavad keys show $WALLET --bech val -a) 1000000ulava --from $WALLET --chain-id lava-testnet-2 --fees 300ulava -y
-```
-
-Delegate
-
-```bash
-lavad tx staking delegate <TO_VALOPER_ADDRESS> 1000000ulava --from $WALLET --chain-id lava-testnet-2 --fees 300ulava -y
-```
-
-Redelegate Stake to Another Validator
-
-```bash
-lavad tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 1000000ulava --from $WALLET --chain-id lava-testnet-2 --fees 300ulava -y
-```
-
-Unbond
-
-```bash
-lavad tx staking unbond $(lavad keys show $WALLET --bech val -a) 1000000ulava --from $WALLET --chain-id lava-testnet-2 --fees 300ulava -y
-```
-
-Transfer Funds
-
-```bash
-lavad tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 1000000ulava --fees 300ulava -y
-```
-
-### Validator operations <a href="#validator-operations" id="validator-operations"></a>
-
-MonikerIdentityDetailsAmount, ulavaCommission rateCommission max rateCommission max change rate
-
-Create New Validator
-
-```bash
 lavad tx staking create-validator \
 --amount 1000000ulava \
---from $WALLET \
---commission-rate 0.1 \
---commission-max-rate 0.2 \
+--pubkey $(lavad tendermint show-validator) \
+--moniker "YOUR_MONIKER_NAME" \
+--identity "YOUR_KEYBASE_ID" \
+--details "YOUR_DETAILS" \
+--website "YOUR_WEBSITE_URL" \
+--chain-id lavatestnet-1 \
+--commission-rate 0.05 \
+--commission-max-rate 0.20 \
 --commission-max-change-rate 0.01 \
 --min-self-delegation 1 \
---pubkey $(lavad tendermint show-validator) \
---moniker "$MONIKER" \
---identity "" \
---details "I love blockchain ❤️" \
---chain-id lava-testnet-2 \
---fees 300ulava \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 0.00025ulava \
 -y
 ```
 
-Edit Existing Validator
+**EDIT EXISTING VALIDATOR**
 
-```bash
+```
 lavad tx staking edit-validator \
---commission-rate 0.1 \
---new-moniker "$MONIKER" \
---identity "" \
---details "I love blockchain ❤️" \
---from $WALLET \
---chain-id lava-testnet-2 \
---fees 300ulava \
+--new-moniker "YOUR_MONIKER_NAME" \
+--identity "YOUR_KEYBASE_ID" \
+--details "YOUR_DETAILS" \
+--website "YOUR_WEBSITE_URL" \
+--chain-id lavatestnet-1 \
+--commission-rate 0.05 \
+--from wallet \
+--gas-adjustment 1.4 \
+--gas auto \
+--gas-prices 0.00025ulava \
 -y
 ```
 
-Validator info
+**UNJAIL VALIDATOR**
 
-```bash
-lavad status 2>&1 | jq .ValidatorInfo
+```
+lavad tx slashing unjail --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
-Validator Details
+**JAIL REASON**
 
-```bash
-lavad q staking validator $(lavad keys show $WALLET --bech val -a)
+```
+lavad query slashing signing-info $(lavad tendermint show-validator)
 ```
 
-Jailing info
+**LIST ALL ACTIVE VALIDATORS**
 
-```bash
-lavad q slashing signing-info $(lavad tendermint show-validator)
+```
+lavad q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
-Slashing parameters
+**LIST ALL INACTIVE VALIDATORS**
 
-```bash
-lavad q slashing params
+```
+lavad q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_UNBONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
 ```
 
-Unjail validator
+**VIEW VALIDATOR DETAILS**
 
-```bash
-lavad tx slashing unjail --from $WALLET --chain-id lava-testnet-2 --fees 300ulava -y
+```
+lavad q staking validator $(lavad keys show wallet --bech val -a)
 ```
 
-Active Validators List
+### 💲 Token management <a href="#token-management" id="token-management"></a>
 
-```bash
-lavad q staking validators -oj --limit=2000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " 	 " + .description.moniker' | sort -gr | nl
+**WITHDRAW REWARDS FROM ALL VALIDATORS**
+
+```
+lavad tx distribution withdraw-all-rewards --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
-Check Validator key
+**WITHDRAW COMMISSION AND REWARDS FROM YOUR VALIDATOR**
 
-```bash
-[[ $(lavad q staking validator $VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(lavad status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "Your key status is ok" || echo -e "Your key status is error"
+```
+lavad tx distribution withdraw-rewards $(lavad keys show wallet --bech val -a) --commission --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
-Signing info
+**DELEGATE TOKENS TO YOURSELF**
 
-```bash
-lavad q slashing signing-info $(lavad tendermint show-validator)
+```
+lavad tx staking delegate $(lavad keys show wallet --bech val -a) 1000000ulava --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
-### Governance <a href="#governance" id="governance"></a>
+**DELEGATE TOKENS TO VALIDATOR**
 
-TitleDescriptionDeposit, ulava
-
-Create New Text Proposal
-
-```bash
-lavad  tx gov submit-proposal \
---title "" \
---description "" \
---deposit 1000000ulava \
---type Text \
---from $WALLET \
---fees 300ulava \
--y 
+```
+lavad tx staking delegate <TO_VALOPER_ADDRESS> 1000000ulava --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
-Proposals List
+**REDELEGATE TOKENS TO ANOTHER VALIDATOR**
 
-```bash
+```
+lavad tx staking redelegate $(lavad keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ulava --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+**UNBOND TOKENS FROM YOUR VALIDATOR**
+
+```
+lavad tx staking unbond $(lavad keys show wallet --bech val -a) 1000000ulava --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+**SEND TOKENS TO THE WALLET**
+
+```
+lavad tx bank send wallet <TO_WALLET_ADDRESS> 1000000ulava --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+### 🗳 Governance <a href="#governance" id="governance"></a>
+
+**LIST ALL PROPOSALS**
+
+```
 lavad query gov proposals
 ```
 
-Proposal IDProposal optionYesNoNo with vetoAbstain
+**VIEW PROPOSAL BY ID**
 
-View proposal
-
-```bash
+```
 lavad query gov proposal 1
 ```
 
-Vote
+**VOTE ‘YES’**
 
-```bash
-lavad tx gov vote 1 yes --from $WALLET --chain-id lava-testnet-2  --fees 300ulava -y
+```
+lavad tx gov vote 1 yes --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+**VOTE ‘NO’**
+
+```
+lavad tx gov vote 1 no --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+**VOTE ‘ABSTAIN’**
+
+```
+lavad tx gov vote 1 abstain --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+**VOTE ‘NOWITHVETO’**
+
+```
+lavad tx gov vote 1 NoWithVeto --from wallet --chain-id lavatestnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+```
+
+### ⚡️ Utility <a href="#utility" id="utility"></a>
+
+**UPDATE PORTS**
+
+```
+CUSTOM_PORT=110
+sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${CUSTOM_PORT}58\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${CUSTOM_PORT}57\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${CUSTOM_PORT}60\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${CUSTOM_PORT}56\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${CUSTOM_PORT}66\"%" $HOME/.lava/config/config.toml
+sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${CUSTOM_PORT}17\"%; s%^address = \":8080\"%address = \":${CUSTOM_PORT}80\"%; s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:${CUSTOM_PORT}90\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${CUSTOM_PORT}91\"%" $HOME/.lava/config/app.toml
+```
+
+**UPDATE INDEXER**
+
+**Disable indexer**
+
+```
+sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.lava/config/config.toml
+```
+
+**Enable indexer**
+
+```
+sed -i -e 's|^indexer *=.*|indexer = "kv"|' $HOME/.lava/config/config.toml
+```
+
+**UPDATE PRUNING**
+
+```
+sed -i \
+  -e 's|^pruning *=.*|pruning = "custom"|' \
+  -e 's|^pruning-keep-recent *=.*|pruning-keep-recent = "100"|' \
+  -e 's|^pruning-keep-every *=.*|pruning-keep-every = "0"|' \
+  -e 's|^pruning-interval *=.*|pruning-interval = "19"|' \
+  $HOME/.lava/config/app.toml
+```
+
+### 🚨 Maintenance <a href="#maintenance" id="maintenance"></a>
+
+**GET VALIDATOR INFO**
+
+```
+lavad status 2>&1 | jq .ValidatorInfo
+```
+
+**GET SYNC INFO**
+
+```
+lavad status 2>&1 | jq .SyncInfo
+```
+
+**GET NODE PEER**
+
+```
+echo $(lavad tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/.lava/config/config.toml | sed -n '/Address to listen for incoming connection/{n;p;}' | sed 's/.*://; s/".*//')
+```
+
+**CHECK IF VALIDATOR KEY IS CORRECT**
+
+```
+[[ $(lavad q staking validator $(lavad keys show wallet --bech val -a) -oj | jq -r .consensus_pubkey.key) = $(lavad status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "\n\e[1m\e[32mTrue\e[0m\n" || echo -e "\n\e[1m\e[31mFalse\e[0m\n"
+```
+
+**GET LIVE PEERS**
+
+```
+curl -sS http://localhost:15357/net_info | jq -r '.result.peers[] | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr)"' | awk -F ':' '{print $1":"$(NF)}'
+```
+
+**SET MINIMUM GAS PRICE**
+
+```
+sed -i -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.00025ulava,0.0018ibc/2180E84E20F5679FCC760D8C165B60F42065DEF7F46A72B447CFF1B7DC6C0A65,0.00025ibc/E2D2F6ADCC68AA3384B2F5DFACCA437923D137C14E86FB8A10207CF3BED0C8D4\"/" $HOME/.lava/config/app.toml
+```
+
+**ENABLE PROMETHEUS**
+
+```
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.lava/config/config.toml
+```
+
+**RESET CHAIN DATA**
+
+```
+lavad tendermint unsafe-reset-all --keep-addr-book --home $HOME/.lava --keep-addr-book
+```
+
+**REMOVE NODE**
+
+Please, before proceeding with the next step! All chain data will be lost! Make sure you have backed up your **priv\_validator\_key.json**!
+
+```
+cd $HOME
+sudo systemctl stop lava.service
+sudo systemctl disable lava.service
+sudo rm /etc/systemd/system/lava.service
+sudo systemctl daemon-reload
+rm -f $(which lavad)
+rm -rf $HOME/.lava
+rm -rf $HOME/lava
+```
+
+### ⚙️ Service Management <a href="#service-management" id="service-management"></a>
+
+**RELOAD SERVICE CONFIGURATION**
+
+```
+sudo systemctl daemon-reload
+```
+
+**ENABLE SERVICE**
+
+```
+sudo systemctl enable lava.service
+```
+
+**DISABLE SERVICE**
+
+```
+sudo systemctl disable lava.service
+```
+
+**START SERVICE**
+
+```
+sudo systemctl start lava.service
+```
+
+**STOP SERVICE**
+
+```
+sudo systemctl stop lava.service
+```
+
+**RESTART SERVICE**
+
+```
+sudo systemctl restart lava.service
+```
+
+**CHECK SERVICE STATUS**
+
+```
+sudo systemctl status lava.service
+```
+
+**CHECK SERVICE LOGS**
+
+```
+sudo journalctl -u lava.service -f --no-hostname -o cat
 ```
