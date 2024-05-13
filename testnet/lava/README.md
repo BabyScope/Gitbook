@@ -16,4 +16,4 @@ Subscribe to our free [🤖 Testnet Proposal Bot](https://t.me/kjnodes\_testnet\
 
 ### Chain explorer <a href="#chain-explorer" id="chain-explorer"></a>
 
-[https://explorer.babyscope.nl/lava-testnet-2](https://explorer.babyscope.nl/lava-testnet-2)
+[https://lava.explorers.guru](https://lava.explorers.guru)
