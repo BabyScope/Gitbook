@@ -1,14 +1,14 @@
-# Installation Provider
+# Provider
+
+## Installation Provider
 
 ![](https://services.kjnodes.com/assets/images/logos/lava.png)
 
-| Chain- id      | Latest Version Tag | 
-| -------------  | ------------------ | 
-| LAV1           | v2.0.1             | 
+| Chain- id | Latest Version Tag |
+| --------- | ------------------ |
+| LAV1      | v2.0.1             |
 
-
-#### Create config file <a href="#create-config" id="create-config"></a>
-
+**Create config file**
 
 ```
 RPC=$(cat $HOME/.lava/config/config.toml | sed -n '/TCP or UNIX socket address for the RPC server to listen on/{n;p;}' | sed 's/.*://; s/".*//')
@@ -45,7 +45,7 @@ endpoints:
 EOF
 ```
 
-#### Download and build binaries <a href="#download-and-build-binaries" id="download-and-build-binaries"></a>
+**Download and build binaries**
 
 ```
 # Clone project repository
@@ -58,7 +58,7 @@ git checkout 2.0.1
 make install-all
 ```
 
-#### Create a service <a href="#create-a-service" id="create-a-service"></a>
+**Create a service**
 
 ```
 tee /etc/systemd/system/lavap.service > /dev/null << EOF
@@ -82,13 +82,13 @@ sudo systemctl daemon-reload
 systemctl enable lavap
 ```
 
-#### Start service and check the logs <a href="#start-service-and-check-the-logs" id="start-service-and-check-the-logs"></a>
+**Start service and check the logs**
 
 ```
 sudo systemctl start lavap && sudo journalctl -u lavap -f --no-hostname -o cat
 ```
 
-# Useful commands
+## Useful commands
 
 **Stake new Provider**
 

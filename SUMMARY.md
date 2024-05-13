@@ -36,6 +36,7 @@
   * [Useful commands](testnet/elys/useful-commands.md)
 * [LAVA](testnet/lava/README.md)
   * [Installation](testnet/lava/installation.md)
+  * [Provider](testnet/lava/provider.md)
   * [Upgrade](testnet/lava/upgrade.md)
   * [Snapshot](testnet/lava/snapshot.md)
   * [State sync](testnet/lava/state-sync.md)
