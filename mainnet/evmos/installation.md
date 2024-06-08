@@ -1,13 +1,15 @@
 ---
 description: >-
-  Evmos is a proof-of-stake (PoS) network that enables value transfer between Ethereum and Cosmos ecosystems. It is developed using the Cosmos software development kit (SDK).
+  Evmos is a proof-of-stake (PoS) network that enables value transfer between
+  Ethereum and Cosmos ecosystems. It is developed using the Cosmos software
+  development kit (SDK).
 ---
 
 # Installation
 
 <figure><img src="../../images/evmos.png" alt=""><figcaption></figcaption></figure>
 
-**Chain ID**: evmos_9001-2 | **Latest Version Tag**: v18.0.0 | **Custom Port**: 169
+**Chain ID**: evmos\_9001-2 | **Latest Version Tag**: v18.0.0 | **Custom Port**: 169
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
@@ -139,7 +141,7 @@ evmosd config node tcp://localhost:${CUSTOM_PORT}57
 ### Download latest chain snapshot
 
 ```bash
-curl -L http://snapshots.stakevillage.net/snapshots/evmos_9001-2/evmos_9001-2_2024-04-04.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.evmosd
+Download snapshot
 ```
 
 ### Start service and check the logs

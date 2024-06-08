@@ -1,13 +1,14 @@
 ---
 description: >-
-  NEAR is the chain abstraction stack, empowering builders to create apps that scale to billions of users and across all blockchains
+  NEAR is the chain abstraction stack, empowering builders to create apps that
+  scale to billions of users and across all blockchains
 ---
 
 # Installation
 
 <figure><img src="../../images/near.png" alt=""><figcaption></figcaption></figure>
 
-**Chain ID**: mainnet | **Latest Version Tag**: v1.39.1 
+**Chain ID**: mainnet | **Latest Version Tag**: v1.39.2
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
@@ -37,7 +38,7 @@ rm -rf nearcore
 git clone https://github.com/near/nearcore
 cd nearcore
 git fetch origin --tags
-git checkout tags/1.39.1 -b mynode
+git checkout tags/1.39.2 -b mynode
 make release
 sudo mv $HOME/nearcore/target/release/neard /usr/local/bin/neard
 ```
@@ -75,7 +76,6 @@ neard --home $HOME/.near init --chain-id mainnet --download-genesis --download-c
 rm ~/.near/config.json
 wget https://s3-us-west-1.amazonaws.com/build.nearprotocol.com/nearcore-deploy/mainnet/config.json -P ~/.near/
 ```
-
 
 ### Download latest chain snapshot
 

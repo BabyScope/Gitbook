@@ -133,8 +133,7 @@ sed -i -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:16517\"
 ### Download latest chain snapshot
 
 ```bash
-curl -L https://snapshots.kjnodes.com/axelar/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.axelar
-[[ -f $HOME/.axelar/data/upgrade-info.json ]] && cp $HOME/.axelar/data/upgrade-info.json $HOME/.axelar/cosmovisor/genesis/upgrade-info.json
+Download snapshot
 ```
 
 ### Start service and check the logs

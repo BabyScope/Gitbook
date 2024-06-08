@@ -4,9 +4,9 @@ description: Prepare for and the upcomming chain upgrade using Cosmovisor.
 
 # Upgrade
 
-<figure><img src="https://github.com/BabyScope/Gitbook/blob/main/images/near.png?raw=true" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../images/near.png" alt=""><figcaption></figcaption></figure>
 
-**Chain ID**: mainnet | **Latest Version Tag**: v1.39.1 
+**Chain ID**: mainnet | **Latest Version Tag**: v1.39.1
 
 ## Download and build upgrade binaries
 
@@ -17,7 +17,7 @@ rm -rf nearcore
 git clone https://github.com/near/nearcore
 cd nearcore
 git fetch origin --tags
-git checkout tags/1.39.1 -b mynode
+git checkout tags/1.39.2 -b mynode
 make release
 sudo mv $HOME/nearcore/target/release/neard /usr/local/bin/neard
 sudo systemctl restart neard && sudo journalctl -u neard -f --no-hostname -o cat
