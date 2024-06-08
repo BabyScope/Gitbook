@@ -18,12 +18,6 @@ coverY: 0
 
 ## TESTNET
 
-<img src="images/axelar.png" alt="" data-size="line"> [Axelar](./)
-
-<img src="images/evmos.png" alt="" data-size="line"> [Evmos](./)
-
 <img src="images/lava.png" alt="" data-size="line"> [Lava](./)
-
-<img src="images/near.png" alt="" data-size="line"> [NEAR](./)
 
 <img src="images/union.png" alt="" data-size="line"> [Union](./)

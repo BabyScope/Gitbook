@@ -2,7 +2,6 @@
 
 * [🔭 BabyScope Explorer](https://explorer.babyscope.eu)
 * [⛓️ Supported Chains](README.md)
-* [🏝️ Governance Proposals Bots](governance-proposals-bots.md)
 
 ## Mainnet
 
