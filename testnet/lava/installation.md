@@ -2,10 +2,9 @@
 
 ![](https://services.kjnodes.com/assets/images/logos/lava.png)
 
-| Chain ID       | Latest Version Tag | Custom Port | 
-| -------------  | ------------------ | ----------- | 
-| lava-testnet-2 | v2.0.0             | 144         | 
-
+| Chain ID       | Latest Version Tag | Custom Port |
+| -------------- | ------------------ | ----------- |
+| lava-testnet-2 | v2.1.1             | 144         |
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
@@ -29,7 +28,7 @@ sudo apt -qy upgrade
 
 ```
 sudo rm -rf /usr/local/go
-curl -Ls https://go.dev/dl/go1.22.2.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+curl -Ls https://go.dev/dl/go1.22.3.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
 eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
 eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 ```
@@ -42,7 +41,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout v2.0.0
+git checkout v2.1.1
 
 # Build binaries
 export LAVA_BINARY=lavad
