@@ -118,10 +118,10 @@ lavap tx pairing unstake-provider LAV1 --from wallet --gas-prices 0.1ulava --gas
 lavap test rpcprovider --from wallet
 ```
 
-**Unfreeze**
+**Unjail end time**
 
 ```
-lavap tx pairing unfreeze LAV1,ETH1 --from wallet --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y
+lavap q pairing provider   <provider address> --node tcp://localhost:20002 | grep "end" 
 ```
 
 **Account info**
