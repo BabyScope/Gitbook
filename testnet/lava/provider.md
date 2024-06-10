@@ -4,9 +4,9 @@
 
 ![](https://services.kjnodes.com/assets/images/logos/lava.png)
 
-| Chain- id | Latest Version Tag |
-| --------- | ------------------ |
-| LAV1      | v2.0.1             |
+| Proces | Latest Version Tag |
+| ------ | ------------------ |
+| Lavap  | v2.1.2             |
 
 **Create config file**
 
@@ -53,7 +53,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout 2.0.1
+git checkout 2.1.2
 
 make install-all
 ```
@@ -94,7 +94,7 @@ sudo systemctl start lavap && sudo journalctl -u lavap -f --no-hostname -o cat
 
 ```
 MONIKER="BabyScope"
-DOMEN=provider.babyscope.eu
+DOMEN=provider.babyscope.nl
 PORT=443
 echo $MONIKER $DOMEN $PORT
 lavap tx pairing stake-provider LAV1 "50000000000ulava" "$DOMEN:$PORT,2" 2 lava@valoper18rtt3ka0jc85qvvcnct0t7ayq6fva7697l737q --from wallet --provider-moniker "$MONIKER"  --delegate-limit "0ulava" --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y
@@ -137,7 +137,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout 2.0.1
+git checkout 2.1.2
 
 export LAVA_BINARY=lavap
 make install
