@@ -53,7 +53,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout 2.1.2
+git checkout v2.1.2
 
 make install-all
 ```
@@ -137,7 +137,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout 2.1.2
+git checkout v2.1.2
 
 export LAVA_BINARY=lavap
 make install
