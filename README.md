@@ -10,14 +10,14 @@ coverY: 0
 
 ## MAINNET
 
-<img src="images/axelar.png" alt="" data-size="line"> [Axelar](./)
+<img src="images/axelar.png" alt="" data-size="line"> [Axelar](mainnet/axelar/)
 
-<img src="images/evmos.png" alt="" data-size="line"> [EVMOS](./)
+<img src="images/evmos.png" alt="" data-size="line"> [EVMOS](mainnet/evmos/)
 
-<img src="images/near.png" alt="" data-size="line"> [NEAR](./)
+<img src="images/near.png" alt="" data-size="line"> [NEAR](mainnet/near/)
 
 ## TESTNET
 
-<img src="images/lava.png" alt="" data-size="line"> [Lava](./)
+<img src="images/lava.png" alt="" data-size="line"> [Lava](testnet/lava/)
 
-<img src="images/union.png" alt="" data-size="line"> [Union](./)
+<img src="images/union.png" alt="" data-size="line"> [Union](testnet/union/)
