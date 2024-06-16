@@ -8,7 +8,7 @@ Lava powers a trustless market for RPC data access. The protocol governs over pe
 
 | Chain ID       | Latest Version Tag | Wasm |
 | -------------- | ------------------ | ---- |
-| lava-testnet-2 | v2.1.1             | OFF  |
+| lava-testnet-2 | v2.1.3             | OFF  |
 
 [Website](https://lavanet.xyz/) | [Discord](https://discord.com/invite/Tbk5NxTCdA) | [Twitter](https://twitter.com/lavanetxyz)
 

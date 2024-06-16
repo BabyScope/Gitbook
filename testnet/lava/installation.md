@@ -4,7 +4,7 @@
 
 | Chain ID       | Latest Version Tag | Custom Port |
 | -------------- | ------------------ | ----------- |
-| lava-testnet-2 | v2.1.1             | 144         |
+| lava-testnet-2 | v2.1.3             | 144         |
 
 #### Setup validator name <a href="#setup-validator-name" id="setup-validator-name"></a>
 
@@ -41,7 +41,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout v2.1.1
+git checkout v2.1.3
 
 # Build binaries
 export LAVA_BINARY=lavad
