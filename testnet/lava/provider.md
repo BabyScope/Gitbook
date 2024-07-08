@@ -6,7 +6,7 @@
 
 | Proces | Latest Version Tag |
 | ------ | ------------------ |
-| Lavap  | v2.1.2             |
+| Lavap  | v2.2.3             |
 
 **Create config file**
 
@@ -53,7 +53,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout v2.1.2
+git checkout v2.2.3
 
 make install-all
 ```
@@ -137,7 +137,7 @@ cd $HOME
 rm -rf lava
 git clone https://github.com/lavanet/lava.git
 cd lava
-git checkout v2.1.2
+git checkout v2.2.3
 
 export LAVA_BINARY=lavap
 make install
