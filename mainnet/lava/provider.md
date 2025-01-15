@@ -21,7 +21,7 @@ mkdir $HOME/config
 sudo tee << EOF >/dev/null $HOME/config/lavaprovider.yml
 endpoints:
   - api-interface: tendermintrpc
-    chain-id: LAV1
+    chain-id: LAVA
     network-address:
       address: 0.0.0.0:29667
       disable-tls: true
@@ -29,14 +29,14 @@ endpoints:
       - url: ws://127.0.0.1:$RPC/websocket
       - url: http://127.0.0.1:$RPC
   - api-interface: grpc
-    chain-id: LAV1
+    chain-id: LAVA
     network-address:
       address: 0.0.0.0:29667
       disable-tls: true
     node-urls:
       url: 127.0.0.1:$GRPC
   - api-interface: rest
-    chain-id: LAV1
+    chain-id: LAVA
     network-address:
       address: 0.0.0.0:29667
       disable-tls: true
@@ -69,7 +69,7 @@ After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/config
-ExecStart=$(which lavap) rpcprovider lavaprovider.yml --geolocation 2 --from wallet --chain-id lava-testnet-2 --keyring-backend test
+ExecStart=$(which lavap) rpcprovider lavaprovider.yml --geolocation 2 --from wallet --chain-id lava-mainnet-1 --keyring-backend test
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -103,13 +103,13 @@ lavap tx pairing stake-provider LAV1 "50000000000ulava" "$DOMEN:$PORT,2" 2 lava@
 **Modify**
 
 ```
-lavap tx pairing modify-provider LAV1 --amount "50000000000ulava" --endpoints "my-provider-africa.com:443,AF my-provider-europe.com:443,EU" --geolocation "AF,EU" --from wallet --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y
+lavap tx pairing modify-provider LAVA --amount "50000000000ulava" --endpoints "my-provider-africa.com:443,AF my-provider-europe.com:443,EU" --geolocation "AF,EU" --from wallet --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y
 ```
 
 **Unstake**
 
 ```
-lavap tx pairing unstake-provider LAV1 --from wallet --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y
+lavap tx pairing unstake-provider LAVA --from wallet --gas-prices 0.1ulava --gas-adjustment 1.5 --gas auto -y
 ```
 
 **Test**

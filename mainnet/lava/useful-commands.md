@@ -60,7 +60,7 @@ lavad tx staking create-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id lava-testnet-2 \
+--chain-id lava-mainnet-1 \
 --commission-rate 0.05 \
 --commission-max-rate 0.20 \
 --commission-max-change-rate 0.01 \
@@ -80,7 +80,7 @@ lavad tx staking edit-validator \
 --identity "YOUR_KEYBASE_ID" \
 --details "YOUR_DETAILS" \
 --website "YOUR_WEBSITE_URL" \
---chain-id lava-testnet-2 \
+--chain-id lava-mainnet-1 \
 --commission-rate 0.05 \
 --from wallet \
 --gas-adjustment 1.4 \
@@ -92,7 +92,7 @@ lavad tx staking edit-validator \
 **UNJAIL VALIDATOR**
 
 ```
-lavad tx slashing unjail --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx slashing unjail --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **JAIL REASON**
@@ -124,43 +124,43 @@ lavad q staking validator $(lavad keys show wallet --bech val -a)
 **WITHDRAW REWARDS FROM ALL VALIDATORS**
 
 ```
-lavad tx distribution withdraw-all-rewards --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx distribution withdraw-all-rewards --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **WITHDRAW COMMISSION AND REWARDS FROM YOUR VALIDATOR**
 
 ```
-lavad tx distribution withdraw-rewards $(lavad keys show wallet --bech val -a) --commission --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx distribution withdraw-rewards $(lavad keys show wallet --bech val -a) --commission --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **DELEGATE TOKENS TO YOURSELF**
 
 ```
-lavad tx staking delegate $(lavad keys show wallet --bech val -a) 1000000ulava --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx staking delegate $(lavad keys show wallet --bech val -a) 1000000ulava --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **DELEGATE TOKENS TO VALIDATOR**
 
 ```
-lavad tx staking delegate <TO_VALOPER_ADDRESS> 1000000ulava --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx staking delegate <TO_VALOPER_ADDRESS> 1000000ulava --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **REDELEGATE TOKENS TO ANOTHER VALIDATOR**
 
 ```
-lavad tx staking redelegate $(lavad keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ulava --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx staking redelegate $(lavad keys show wallet --bech val -a) <TO_VALOPER_ADDRESS> 1000000ulava --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **UNBOND TOKENS FROM YOUR VALIDATOR**
 
 ```
-lavad tx staking unbond $(lavad keys show wallet --bech val -a) 1000000ulava --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx staking unbond $(lavad keys show wallet --bech val -a) 1000000ulava --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **SEND TOKENS TO THE WALLET**
 
 ```
-lavad tx bank send wallet <TO_WALLET_ADDRESS> 1000000ulava --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx bank send wallet <TO_WALLET_ADDRESS> 1000000ulava --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 ### 🗳 Governance <a href="#governance" id="governance"></a>
@@ -180,25 +180,25 @@ lavad query gov proposal 1
 **VOTE ‘YES’**
 
 ```
-lavad tx gov vote 1 yes --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx gov vote 1 yes --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **VOTE ‘NO’**
 
 ```
-lavad tx gov vote 1 no --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx gov vote 1 no --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **VOTE ‘ABSTAIN’**
 
 ```
-lavad tx gov vote 1 abstain --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx gov vote 1 abstain --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 **VOTE ‘NOWITHVETO’**
 
 ```
-lavad tx gov vote 1 NoWithVeto --from wallet --chain-id lava-testnet-2 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
+lavad tx gov vote 1 NoWithVeto --from wallet --chain-id lava-mainnet-1 --gas-adjustment 1.4 --gas auto --gas-prices 0.00025ulava -y
 ```
 
 ### ⚡️ Utility <a href="#utility" id="utility"></a>

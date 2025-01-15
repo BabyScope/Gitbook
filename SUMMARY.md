@@ -5,6 +5,11 @@
 
 ## Mainnet
 
+* [Lava](mainnet/lava/README.md)
+  * [Installation](mainnet/lava/installation.md)
+  * [Provider](mainnet/lava/provider.md)
+  * [Upgrade](mainnet/lava/upgrade.md)
+  * [Useful commands](mainnet/lava/useful-commands.md)
 * [Axelar](mainnet/axelar/README.md)
   * [Installation](mainnet/axelar/installation.md)
   * [Upgrade](mainnet/axelar/upgrade.md)
@@ -27,15 +32,10 @@
   * [Installation](testnet/lava/installation.md)
   * [Provider](testnet/lava/provider.md)
   * [Upgrade](testnet/lava/upgrade.md)
-  * [Snapshot](testnet/lava/snapshot.md)
-  * [State sync](testnet/lava/state-sync.md)
   * [Useful commands](testnet/lava/useful-commands.md)
-  * [Public RPC, API](testnet/lava/public-rpc-api.md)
-* [UNION](testnet/union/README.md)
+* [Union](testnet/union/README.md)
   * [Installation](testnet/union/installation.md)
   * [Upgrade](testnet/union/upgrade.md)
-  * [Snapshot](testnet/union/snapshot.md)
-  * [State sync](testnet/union/state-sync.md)
   * [Useful commands](testnet/union/useful-commands.md)
 
 ## TEAM BABYSCOPE

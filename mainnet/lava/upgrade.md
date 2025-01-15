@@ -4,7 +4,7 @@
 
 | Chain ID       | Latest Version Tag | Custom Port |
 | -------------- | ------------------ | ----------- |
-| lava-testnet-2 | v4.2.0             | 144         |
+| lava-mainnet-1 | v4.2.0             | 144         |
 
 Since we are using Cosmovisor, it makes it very easy to prepare for upcomming upgrade. You just have to build new binaries and move it into cosmovisor upgrades directory.
 
@@ -23,9 +23,10 @@ export LAVA_BINARY=lavad
 make build
 
 # Prepare binaries for Cosmovisor
-mkdir -p $HOME/.lava/cosmovisor/upgrades/v4.2/bin
-mv build/lavad $HOME/.lava/cosmovisor/upgrades/v4.2/bin/
+mkdir -p $HOME/.lava/cosmovisor/upgrades/v4.2.0/bin
+mv build/lavad $HOME/.lava/cosmovisor/upgrades/v4.2.0/bin/
 rm -rf build
+
 ```
 
 _Thats it! Now when upgrade block height is reached, Cosmovisor will handle it automatically!_
